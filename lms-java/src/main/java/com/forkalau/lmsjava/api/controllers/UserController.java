@@ -1,6 +1,7 @@
-package com.forkalau.lmsjava.api;
+package com.forkalau.lmsjava.api.controllers;
 
 import com.forkalau.lmsjava.domain.User;
+import com.forkalau.lmsjava.services.MapValidationError;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -19,12 +20,15 @@ public class UserController {
     @Autowired
     private UserService userService;
 
+    @Autowired
+    private MapValidationError mapValidationError;
+
     @PostMapping("")
     public ResponseEntity<?> createNewUser(@Valid @RequestBody User user, BindingResult result) {
 
-        if (result.hasErrors()) {
-            return new ResponseEntity<String>("Invalid User", HttpStatus.BAD_REQUEST);
-        }
+        ResponseEntity<?> errorMap = mapValidationError.mapValidationError(result);
+        if (errorMap != null) return errorMap;
+
         User user1 = userService.saveOrUpdateUser(user);
         return new ResponseEntity<User>(user, HttpStatus.CREATED);
     }

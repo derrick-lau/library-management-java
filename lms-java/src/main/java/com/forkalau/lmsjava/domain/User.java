@@ -1,20 +1,12 @@
 package com.forkalau.lmsjava.domain;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import java.util.Date;
 
-
-@AllArgsConstructor
-@NoArgsConstructor
-@Data
 @Entity
-
 public class User {
     @Id
     @GeneratedValue
@@ -39,5 +31,62 @@ public class User {
     @PreUpdate
     protected void onUpdate() {
         this.updated_At = new Date();
+    }
+
+    public User(Long id, String name, String barcode, String memberType, Date created_At, Date updated_At) {
+        this.id = id;
+        this.name = name;
+        this.barcode = barcode;
+        this.memberType = memberType;
+        this.created_At = created_At;
+        this.updated_At = updated_At;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getBarcode() {
+        return barcode;
+    }
+
+    public void setBarcode(String barcode) {
+        this.barcode = barcode;
+    }
+
+    public String getMemberType() {
+        return memberType;
+    }
+
+    public void setMemberType(String memberType) {
+        this.memberType = memberType;
+    }
+
+    public Date getCreated_At() {
+        return created_At;
+    }
+
+    public void setCreated_At(Date created_At) {
+        this.created_At = created_At;
+    }
+
+    public Date getUpdated_At() {
+        return updated_At;
+    }
+
+    public void setUpdated_At(Date updated_At) {
+        this.updated_At = updated_At;
     }
 }
