@@ -1,16 +1,16 @@
 package com.forkalau.lmsjava.api.controllers;
 
 import com.forkalau.lmsjava.domain.User;
-import com.forkalau.lmsjava.services.MapValidationError;
+import com.forkalau.lmsjava.services.iservices.IFactory;
+import com.forkalau.lmsjava.services.iservices.IUserService;
+import com.forkalau.lmsjava.services.middlewares.validationErrors.IMapValidationError;
+import com.forkalau.lmsjava.services.middlewares.validationErrors.MapValidationError;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.scheduling.annotation.Async;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
-import com.forkalau.lmsjava.services.UserService;
 import javax.validation.Valid;
-import java.util.List;
 import java.util.Set;
 
 @RestController
@@ -18,15 +18,16 @@ import java.util.Set;
 public class UserController {
 
     @Autowired
-    private UserService userService;
-
+    private IUserService userService;
     @Autowired
-    private MapValidationError mapValidationError;
+    private IFactory factory;
+    @Autowired
+    private IMapValidationError mapValidationError;
 
     @GetMapping("/search")
     public ResponseEntity<Set<User>> getUserByBarcodeOrName(@RequestParam String barcode, String name) {
         Set<User> userSet= userService.findAllContainingBarcodeOrName(barcode, name);
-        return new ResponseEntity(userSet, HttpStatus.OK);
+        return factory.responseEntity(userSet, HttpStatus.OK);
     }
 
     @PostMapping("/add")
@@ -34,15 +35,14 @@ public class UserController {
 
         ResponseEntity<?> errorMap = mapValidationError.mapValidationError(result);
         if (errorMap != null) return errorMap;
-
         User user1 = userService.saveOrUpdateUser(user);
-        return new ResponseEntity<User>(user1, HttpStatus.CREATED);
+        return factory.responseEntity(user1, HttpStatus.CREATED);
     }
 
 
     @DeleteMapping("/delete")
     public ResponseEntity<String> deleteUser(@RequestParam Long id, String barcode) {
         userService.deleteUserByIdAndBarcode(id, barcode);
-        return new ResponseEntity<String>("User with ID:'" + id + "'was deleted.", HttpStatus.OK);
+        return factory.responseEntity("User with ID:'" + id + "'was deleted.", HttpStatus.OK);
     }
 }

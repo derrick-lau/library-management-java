@@ -9,7 +9,6 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.Set;
 
 @Repository
-@Transactional
 public interface IAuthorRepository extends CrudRepository<Author, Long> {
     Set<Book> findByNameContaining(String author);
 }

@@ -79,14 +79,6 @@ public class Loan {
         this.updated_At = updated_At;
     }
 
-    @Override
-    public String toString() {
-        return "Loan{" +
-                "id=" + id +
-                ", DueDate=" + DueDate +
-                '}';
-    }
-
     public User getUser() {
         return user;
     }

@@ -14,6 +14,7 @@ public class Book {
     @NotBlank(message = "Book title is required")
     private String title;
     @NotBlank(message = "Book ISBN is required")
+    @Column(unique = true)
     private String isbn;
     @ManyToMany(cascade = CascadeType.MERGE)
     private Set<Author> authors;
@@ -34,7 +35,19 @@ public class Book {
         this.updated_At = new Date();
     }
 
+
+    public void addAuthors(Author author) {
+        if (authors == null) {
+            authors = new HashSet<>();
+        }
+        authors.add(author);
+    }
     public Book() {
+    }
+
+    public Book( String title, String isbn) {
+        this.title = title;
+        this.isbn = isbn;
     }
 
     public Long getId() {

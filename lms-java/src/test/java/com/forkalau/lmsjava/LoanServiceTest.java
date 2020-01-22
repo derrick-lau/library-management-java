@@ -1,6 +1,5 @@
 package com.forkalau.lmsjava;
 
-import static org.assertj.core.api.Assertions.assertThat;
 import com.forkalau.lmsjava.domain.User;
 import com.forkalau.lmsjava.services.UserService;
 import com.forkalau.lmsjava.services.middlewares.exceptions.CustomException;
@@ -9,9 +8,11 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
+import static org.assertj.core.api.Assertions.assertThat;
+
 
 @SpringBootTest
-public class UserServiceTest {
+public class LoanServiceTest {
 
 	@Autowired
 	private UserService userService;

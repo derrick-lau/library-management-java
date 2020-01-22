@@ -10,7 +10,6 @@ import java.util.Set;
 
 
 @Repository
-@Transactional
 public interface IBookRepository extends CrudRepository<Book, Long> {
 
     Set<Book>  findByTitleContaining(String title);

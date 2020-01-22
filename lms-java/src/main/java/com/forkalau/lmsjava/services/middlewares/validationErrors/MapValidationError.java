@@ -1,4 +1,4 @@
-package com.forkalau.lmsjava.services;
+package com.forkalau.lmsjava.services.middlewares.validationErrors;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
@@ -8,10 +8,11 @@ import org.springframework.validation.FieldError;
 
 
 @Service
-public class MapValidationError {
+public class MapValidationError implements IMapValidationError {
 
     private String errorString;
 
+    @Override
     public ResponseEntity<?> mapValidationError(BindingResult result) {
         setErrorString("");
         if (result.hasErrors()) {

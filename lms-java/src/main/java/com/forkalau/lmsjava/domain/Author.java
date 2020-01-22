@@ -22,7 +22,7 @@ public class Author {
     private Date updated_At;
 
     @PrePersist
-    protected void  onCreate() {
+    protected void onCreate() {
         this.created_At = new Date();
     }
 
@@ -31,16 +31,14 @@ public class Author {
         this.updated_At = new Date();
     }
 
-    public Author(String name, Set<Book> books) {
-        this.id = id;
-        this.name = name;
-        this.books = books;
-        this.created_At = created_At;
-        this.updated_At = updated_At;
-    }
 
     public Author() {
     }
+
+    public Author( String name) {
+        this.name = name;
+    }
+
 
     public Long getId() {
         return id;

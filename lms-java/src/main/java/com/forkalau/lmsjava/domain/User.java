@@ -47,6 +47,12 @@ public class User {
         loans.add(loan);
     }
 
+    public User( String name,  String barcode,  String memberType) {
+        this.name = name;
+        this.barcode = barcode;
+        this.memberType = memberType;
+    }
+
     public Long getId() {
         return id;
     }

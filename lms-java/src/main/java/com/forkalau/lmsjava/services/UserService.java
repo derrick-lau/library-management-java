@@ -1,7 +1,9 @@
 package com.forkalau.lmsjava.services;
 
 import com.forkalau.lmsjava.domain.User;
-import com.forkalau.lmsjava.services.middlewares.exceptions.CustomException;
+import com.forkalau.lmsjava.services.iservices.IFactory;
+import com.forkalau.lmsjava.services.iservices.IUserService;
+import com.forkalau.lmsjava.services.middlewares.logs.IWriteLog;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.forkalau.lmsjava.repositories.IUserRepository;
@@ -9,28 +11,38 @@ import com.forkalau.lmsjava.repositories.IUserRepository;
 import java.util.Set;
 
 @Service
-public class UserService {
+public class UserService implements IUserService {
 
     @Autowired
     private IUserRepository userRepository;
+    @Autowired
+    private IFactory factory;
+    @Autowired
+    private IWriteLog writeLog;
 
+    @Override
     public Set<User> findAllContainingBarcodeOrName(String barcode, String name) {
         Set<User> userSet = userRepository.findByBarcodeContainingOrNameContaining(barcode, name);
         return userSet;
     }
 
+    @Override
     public User saveOrUpdateUser(User user) {
         try {
-            return userRepository.save(user);
+            User user1 = userRepository.save(user);
+            writeLog.saveLog("done");
+            return user1;
         } catch (Exception e) {
-            throw new CustomException("User barcode: '" + user.getBarcode() + "' already exist");
+            throw factory.ThrowException("User barcode: '" + user.getBarcode() + "' already exist");
         }
     }
 
+    @Override
     public void deleteUserByIdAndBarcode (Long id, String barcode) {
         User user = userRepository.findByBarcode(barcode);
         if (user == null || user.getId() != id)
-            throw new CustomException("Cannot find user.");
+            throw factory.ThrowException("Cannot find user.");
         userRepository.delete(user);
+        writeLog.saveLog("done");
     }
 }
