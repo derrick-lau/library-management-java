@@ -33,14 +33,9 @@ public class User {
         this.updated_At = new Date();
     }
 
-    public User(Long id, String name, String barcode, String memberType, Date created_At, Date updated_At) {
-        this.id = id;
-        this.name = name;
-        this.barcode = barcode;
-        this.memberType = memberType;
-        this.created_At = created_At;
-        this.updated_At = updated_At;
+    public User() {
     }
+
 
     public Long getId() {
         return id;
