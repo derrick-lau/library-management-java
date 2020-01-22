@@ -10,6 +10,8 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import java.util.*;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 
 @RunWith(SpringRunner.class)
@@ -62,30 +64,6 @@ public class UserServiceTest {
 
 		userService.saveOrUpdateUser(user2);
 		assertThat(userService.saveOrUpdateUser(user)).isEqualTo(user);
-	}
-
-	@Test
-	public void testFilterUserList() {
-
-		User user2 = new User();
-		User user3 =new User();
-		User user4 =new User();
-		User user5 =new User();
-		user2.setName("Martin");
-		user2.setBarcode("2345677777777777777777");
-		user2.setMemberType("Staff");
-		user3.setName("Bing");
-		user3.setBarcode("2345677777777777777777");
-		user3.setMemberType("Staff");
-		user5.setName("Bing");
-		user5.setBarcode("2345677777777777777777");
-		user5.setMemberType("Staff");
-		user4.setName("Bing");
-		user4.setBarcode("2345677777777777777777");
-		user4.setMemberType("Staff");
-		List<User> userList = Arrays.asList(user4 , user5, user3, user2);
-
-		assertThat(userService.filterUserList("123456", "Martin", userList)).contains(user2);
 	}
 
 

@@ -6,8 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.forkalau.lmsjava.repositories.IUserRepository;
 
-import java.util.List;
-import java.util.stream.Collectors;
+import java.util.Set;
 
 @Service
 public class UserService {
@@ -15,10 +14,9 @@ public class UserService {
     @Autowired
     private IUserRepository userRepository;
 
-    public List<User> findAllContainBarcodeOrName(String barcode, String name) {
-        List<User> userList = userRepository.findAll();
-        userList = filterUserList(barcode, name, userList);
-        return userList;
+    public Set<User> findAllContainingBarcodeOrName(String barcode, String name) {
+        Set<User> userSet = userRepository.findByBarcodeContainingOrNameContaining(barcode, name);
+        return userSet;
     }
 
     public User saveOrUpdateUser(User user) {
@@ -35,14 +33,4 @@ public class UserService {
             throw new CustomException("Cannot find user.");
         userRepository.delete(user);
     }
-
-    public List<User> filterUserList (String barcode, String name, List<User> userList) {
-        List<User> filterUserList = userList.stream()
-                .map(user ->  user.getBarcode().contains(barcode) || user.getName().contains(name)? user:null)
-                .filter(user -> user != null)
-                .collect(Collectors.toList());
-        return filterUserList;
-    }
-
-
 }

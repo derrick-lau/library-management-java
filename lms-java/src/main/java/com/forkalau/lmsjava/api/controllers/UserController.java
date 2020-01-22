@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.*;
 import com.forkalau.lmsjava.services.UserService;
 import javax.validation.Valid;
 import java.util.List;
+import java.util.Set;
 
 @RestController
 @RequestMapping("/user")
@@ -23,9 +24,9 @@ public class UserController {
     private MapValidationError mapValidationError;
 
     @GetMapping("/search")
-    public ResponseEntity<List<User>> getUserByBarcodeOrName(@RequestParam String barcode, String name) {
-        List<User> userList= userService.findAllContainBarcodeOrName(barcode, name);
-        return new ResponseEntity<List<User>>(userList, HttpStatus.OK);
+    public ResponseEntity<Set<User>> getUserByBarcodeOrName(@RequestParam String barcode, String name) {
+        Set<User> userSet= userService.findAllContainingBarcodeOrName(barcode, name);
+        return new ResponseEntity(userSet, HttpStatus.OK);
     }
 
     @PostMapping("/add")

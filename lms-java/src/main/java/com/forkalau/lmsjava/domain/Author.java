@@ -5,23 +5,17 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import java.util.Date;
-import java.util.HashSet;
 import java.util.Set;
 
 @Entity
-public class User {
+public class Author {
     @Id
     @GeneratedValue
     private Long id;
-    @NotBlank(message = "User name is required")
-    private String name;
-    @NotBlank(message = "User barcode is required")
-    @Column(unique = true)
-    private String barcode;
-    @OneToMany(cascade = CascadeType.ALL)
-    private Set<Loan> loans;
-    @NotBlank(message = "User memberType is required")
-    private String memberType;
+    @NotBlank(message = "Author name is required")
+    private  String name;
+    @ManyToMany(mappedBy="authors")
+    private Set<Book> books;
     @JsonFormat(pattern = "yyyy-MM-dd")
     private Date created_At;
     @JsonFormat(pattern = "yyyy-MM-dd")
@@ -37,14 +31,15 @@ public class User {
         this.updated_At = new Date();
     }
 
-    public User() {
+    public Author(String name, Set<Book> books) {
+        this.id = id;
+        this.name = name;
+        this.books = books;
+        this.created_At = created_At;
+        this.updated_At = updated_At;
     }
 
-    public void addLoan (Loan loan) {
-        if (loans == null) {
-            loans = new HashSet<>();
-        }
-        loans.add(loan);
+    public Author() {
     }
 
     public Long getId() {
@@ -63,20 +58,12 @@ public class User {
         this.name = name;
     }
 
-    public String getBarcode() {
-        return barcode;
+    public Set<Book> getBooks() {
+        return books;
     }
 
-    public void setBarcode(String barcode) {
-        this.barcode = barcode;
-    }
-
-    public String getMemberType() {
-        return memberType;
-    }
-
-    public void setMemberType(String memberType) {
-        this.memberType = memberType;
+    public void setBooks(Set<Book> books) {
+        this.books = books;
     }
 
     public Date getCreated_At() {
@@ -94,13 +81,6 @@ public class User {
     public void setUpdated_At(Date updated_At) {
         this.updated_At = updated_At;
     }
-
-    public Set<Loan> getLoans() {
-        return loans;
-    }
-
-    public void setLoans(Set<Loan> loans) {
-        this.loans = loans;
-    }
-
 }
+
+
