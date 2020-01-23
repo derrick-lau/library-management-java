@@ -4,7 +4,6 @@ import com.forkalau.lmsjava.domain.User;
 import com.forkalau.lmsjava.services.iservices.IFactory;
 import com.forkalau.lmsjava.services.iservices.IUserService;
 import com.forkalau.lmsjava.services.middlewares.validationErrors.IMapValidationError;
-import com.forkalau.lmsjava.services.middlewares.validationErrors.MapValidationError;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -38,7 +37,6 @@ public class UserController {
         User user1 = userService.saveOrUpdateUser(user);
         return factory.responseEntity(user1, HttpStatus.CREATED);
     }
-
 
     @DeleteMapping("/delete")
     public ResponseEntity<String> deleteUser(@RequestParam Long id, String barcode) {

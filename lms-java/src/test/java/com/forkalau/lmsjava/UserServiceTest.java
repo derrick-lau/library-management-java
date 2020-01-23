@@ -8,6 +8,7 @@ import com.forkalau.lmsjava.services.iservices.IFactory;
 import com.forkalau.lmsjava.services.middlewares.logs.IWriteLog;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.TestInfo;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
@@ -33,6 +34,7 @@ public class UserServiceTest {
 	@InjectMocks
 	UserService service;
 
+	//Params or results
 	User user = new User();
 
 	@BeforeEach
@@ -44,9 +46,10 @@ public class UserServiceTest {
 	}
 
 	@Test
-	void testSave () {
+	void testSave (TestInfo testInfo) {
 		service.saveOrUpdateUser(user);
 		verify(userRepository).save(user);
+		System.out.println(testInfo);
 	}
 
 }
