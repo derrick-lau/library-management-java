@@ -1,73 +1,52 @@
 package com.forkalau.lmsjava;
 
-import static org.assertj.core.api.Assertions.assertThat;
+
 import com.forkalau.lmsjava.domain.User;
+import com.forkalau.lmsjava.repositories.IUserRepository;
 import com.forkalau.lmsjava.services.UserService;
-import com.forkalau.lmsjava.services.middlewares.exceptions.CustomException;
-import org.junit.jupiter.api.Assertions;
+import com.forkalau.lmsjava.services.iservices.IFactory;
+import com.forkalau.lmsjava.services.middlewares.logs.IWriteLog;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.InjectMocks;
+import org.mockito.Mock;
+import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.boot.test.mock.mockito.MockBean;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.mockito.Mockito.verify;
 
 
 @SpringBootTest
+@ExtendWith(MockitoExtension.class)
 public class UserServiceTest {
-
-	@Autowired
-	private UserService userService;
+	@Mock
+	private IUserRepository userRepository;
+	@Mock
+	private IFactory factory;
+	@Mock
+	private IWriteLog writeLog;
+	@InjectMocks
+	UserService service;
 
 	User user = new User();
-	User user2 = new User();
-	User user3 = new User();
 
-	public void setUser1ToDatabase() {
-
-		user.setName("Martin Bing");
-		user.setBarcode("2345677777777777777777");
+	@BeforeEach
+	void setUp() {
+		user.setName("Martin");
+		user.setBarcode("123456");
 		user.setMemberType("Staff");
-
-	}
-
-	public void setUser2ToDatabase() {
-
-		user2.setName("Martin Bing");
-		user2.setBarcode("2345677777777777777777");
-		user2.setMemberType("Staff");
-
-	}
-	public void setUser3ToDatabase() {
-
-		user3.setName("Martin Bing");
-		user3.setMemberType("Staff");
-
-	}
-
-
-	@Test
-	//Successful
-	public void testCreateUser1() {
-		setUser1ToDatabase();
-		assertThat(userService.saveOrUpdateUser(user)).isEqualTo(user);
+		user.setId(Long.valueOf(1));
 	}
 
 	@Test
-	//already exist
-	public void testCreateUser3() {
-		setUser1ToDatabase();
-		setUser2ToDatabase();
-		userService.saveOrUpdateUser(user2);
-		Assertions.assertThrows(CustomException.class, ()->{
-			userService.saveOrUpdateUser(user);
-		});
+	void testSave () {
+		service.saveOrUpdateUser(user);
+		verify(userRepository).save(user);
 	}
 
-
-	@Test
-	public void deleteUser()
-	{
-		userService.saveOrUpdateUser(user);
-		Long id = Long.valueOf(1);
-
-		userService.deleteUserByIdAndBarcode(id,"2345677777777777777777");
-	}
 }
