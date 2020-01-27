@@ -3,7 +3,7 @@
 developing...
 
 # Overview
-A Libray management System based on Node.js Library management system (https://github.com/Derrick-lau/LMS)
+A Libray management System based on Node.js version (https://github.com/Derrick-lau/LMS)
 
 # Features
 
