@@ -1,7 +1,7 @@
 package com.forkalau.lmsjava.services;
 
 import com.forkalau.lmsjava.domain.Admin;
-import com.forkalau.lmsjava.repositories.ILoginRepository;
+import com.forkalau.lmsjava.repositories.IAdminRepository;
 import com.forkalau.lmsjava.services.iservices.IFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -14,24 +14,23 @@ import org.springframework.transaction.annotation.Transactional;
 public class AdminService implements UserDetailsService {
 
     @Autowired
-    private ILoginRepository loginRepository;
+    private IAdminRepository adminRepository;
 
     @Autowired
     IFactory factory;
 
-    @Override
-    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        Admin user = loginRepository.findByUsername(username);
-        if(user==null) factory.usernameNotFoundException("User not found");
-        return user;
-    }
-
-
     @Transactional
     public Admin loadUserById(Long id){
-        Admin user = loginRepository.getById(id);
-        if(user==null) factory.usernameNotFoundException("User not found");
-        return user;
+        Admin admin = adminRepository.getById(id);
+        if(admin==null) factory.usernameNotFoundException("Admin not found");
+        return admin;
 
+    }
+
+    @Override
+    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+        UserDetails admin = adminRepository.findByUsername(username);
+        if(admin==null) factory.usernameNotFoundException("Admin not found");
+        return admin;
     }
 }

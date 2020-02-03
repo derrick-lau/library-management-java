@@ -3,7 +3,7 @@ package com.forkalau.lmsjava.services;
 import com.forkalau.lmsjava.domain.User;
 import com.forkalau.lmsjava.services.iservices.IFactory;
 import com.forkalau.lmsjava.services.iservices.IUserService;
-import com.forkalau.lmsjava.services.middlewares.logs.IWriteLog;
+import com.forkalau.lmsjava.services.iservices.IWriteLog;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.forkalau.lmsjava.repositories.IUserRepository;

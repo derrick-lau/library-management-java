@@ -1,7 +1,9 @@
 import axios from "axios";
+import { Dispatch } from "redux";
+import { SetSignedInActionTypes } from "../../store/TYPES";
 
 //when componentDidMount LoadToken and stay signed in
-const LoadToken = (setIsSignedIn:React.Dispatch<React.SetStateAction<boolean>>) => {
+const LoadToken = (setIsSignedInTrue:SetSignedInActionTypes) => {
     try{
         const token = window.sessionStorage.getItem('token');
         if(token ) {
@@ -15,7 +17,7 @@ const LoadToken = (setIsSignedIn:React.Dispatch<React.SetStateAction<boolean>>) 
                 }
             });
             if(res.status===200 && res.data){
-                setIsSignedIn(true);
+                setIsSignedInTrue;
             } else {console.error()};
             }
             fetch();

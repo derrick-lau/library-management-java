@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const AddOrDeleteOrUpdateRequest = async (url:string, data:Object, method:'delete'|'post'|'put', message:'string') => {
+const AddOrDeleteOrUpdateRequest = async (url:string, data:Object, method:'delete'|'post'|'put', message:string) => {
     try {
         const token = window.sessionStorage.getItem('token');
         const res = await axios({

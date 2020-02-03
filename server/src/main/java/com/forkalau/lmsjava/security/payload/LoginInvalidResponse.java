@@ -1,11 +1,11 @@
-package com.forkalau.lmsjava.services.middlewares.exceptions;
+package com.forkalau.lmsjava.security.payload;
 
-public class InvalidLoginResponse {
+public class LoginInvalidResponse {
     private String barcode;
     private String password;
 
-    public InvalidLoginResponse() {
-        this.barcode = "Invalid Username";
+    public LoginInvalidResponse() {
+        this.barcode = "Invalid Barcode";
         this.password = "Invalid Password";
     }
 

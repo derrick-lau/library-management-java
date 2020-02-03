@@ -22,17 +22,17 @@ const Bookspage: React.FC = () => {
 
   //Api Requests
   const SearchBook = () => {
-      SearchRequest('http://127.0.0.1:5000/books/search', BooktoServer, setFetchedBooks)
+      SearchRequest('http://127.0.0.1:8080/books/search', BooktoServer, setFetchedBooks)
   }
 
   const addBook = (event:React.ChangeEvent<HTMLFormElement>) => {
     event.preventDefault();
-    AddOrDeleteRequest('http://localhost:5000/books/add', BooktoServer, 'post', 'Successfully Added')
+    AddOrDeleteRequest('http://localhost:8080/books/add', BooktoServer, 'post', 'Successfully Added')
   }
   
   const deleteBook = (event:React.ChangeEvent<HTMLFormElement>) => {
     event.preventDefault();
-    AddOrDeleteRequest('http://localhost:5000/books/delete', BooktoServer, 'delete', 'Successfully Deleted')
+    AddOrDeleteRequest('http://localhost:8080/books/delete', BooktoServer, 'delete', 'Successfully Deleted')
   }
 
   //Table of books' data from server

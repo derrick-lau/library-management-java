@@ -1,11 +1,12 @@
 import React, { useState } from 'react';
 import SignInForm from '../../components/SignInForm';
 import SignInRequest from '../../api/SignInRequest';
-import {IisSignedInProps, Iadmin} from '../../model/model'
+import {ISetSignedInProp, Iadmin} from '../../model/model'
+import { useDispatch } from 'react-redux';
 
-const SignIn : React.FC<IisSignedInProps>= ({setIsSignedIn}) => {
-
-  const [admin, setAdmin] = useState<Iadmin>({ barcode: '', password: ''});
+const SignIn : React.FC= () => {
+  const dispatch = useDispatch();
+  const [admin, setAdmin] = useState<Iadmin>({ username: '', password: ''});
 
   const onAdminChange = (event:React.ChangeEvent<HTMLInputElement>) => {
     const { value, name } = event.target;
@@ -14,7 +15,7 @@ const SignIn : React.FC<IisSignedInProps>= ({setIsSignedIn}) => {
 
   const SignIn = (event:React.ChangeEvent<HTMLFormElement>) => {
     event.preventDefault();
-    SignInRequest('http://127.0.0.1:5000/signin', admin, setIsSignedIn)
+    SignInRequest('http://127.0.0.1:8080/signin', admin, dispatch({type:"SET_TRUE"}))
   }
 
   return (

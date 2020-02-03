@@ -1,10 +1,7 @@
 
 import { RouteComponentProps} from 'react-router-dom';
 
-export interface IisSignedInProps extends RouteComponentProps<any>  {
-    isSignedIn?:boolean;
-    setIsSignedIn?:React.Dispatch<React.SetStateAction<boolean>>;
-}
+
 
 export interface ISetSignedInProp  {
   setIsSignedIn:React.Dispatch<React.SetStateAction<boolean>>;
@@ -19,7 +16,7 @@ export interface IMenuProps extends RouteComponentProps<any>  {
 
 
 export interface Iadmin {
-  barcode:string,
+  username:string,
   password:string
 }
 

@@ -3,10 +3,10 @@ import { Link } from 'react-router-dom';
 import { ReactComponent as Logo } from '../../assets/logo.svg';
 import './index.scss';
 import { Button } from 'react-bootstrap';
-import { ISetSignedInProp  } from '../../model/model';
-
-
-const Header:React.SFC<ISetSignedInProp> = ({setIsSignedIn}) => (
+import { useSelector, useDispatch} from 'react-redux';
+const Header:React.FC = () => {
+    const dispatch = useDispatch();
+    return (
     <header>
         <Logo className='logo'/>
         <nav>
@@ -15,12 +15,13 @@ const Header:React.SFC<ISetSignedInProp> = ({setIsSignedIn}) => (
                     Home
                 </Button>
             </Link>
-            <Link className='route' to='/' onClick = { ()=>{setIsSignedIn(false); window.sessionStorage.clear();} }>
+            <Link className='route' to='/' onClick = { ()=>{dispatch({type:"SET_FALSE"}); window.sessionStorage.clear();} }>
                 <Button variant="light">
                     Sign out
                 </Button>
             </Link>
         </nav>
     </header>
-);
+    )
+};
 export default Header;

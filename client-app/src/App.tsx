@@ -10,21 +10,21 @@ import LogsPage from './pages/LogsPage';
 import LoadToken from './api/LoadToken';
 import UserPage from './pages/UserPage'; 
 import LoanPage from './pages/LoanPage';
-import {IisSignedInProps} from './model/model';
-
-
+import { useSelector, useDispatch} from 'react-redux';
+import { RootState } from './store/reducers';
 
 const App: React.FC = () => {
-  const [isSignedIn, setIsSignedIn] = useState<boolean>(false);
-  useEffect( () => LoadToken(setIsSignedIn),[]);
+  const isSignedIn = useSelector((state: RootState)=>state.isSignedIn);
+  const dispatch = useDispatch();
+  useEffect( () => LoadToken(dispatch({type:"SET_TRUE"})),[]);
   return (
     <>
       <Switch>
         { isSignedIn === false ? 
-          <Route exact path="/" render={(props:IisSignedInProps) => <SignIn {...props} setIsSignedIn={setIsSignedIn}/>}/>
+          <Route exact path="/"/>
         :
         <>
-          <Header setIsSignedIn={setIsSignedIn} />
+          <Header  />
           <Route exact path="/" component={Homepage}/>
           <Route path="/users" component={UserPage}/>
           <Route path="/books" component={Bookspage}/>

@@ -1,4 +1,4 @@
-package com.forkalau.lmsjava.services.middlewares.exceptions;
+package com.forkalau.lmsjava.services.exceptions;
 
 
 import org.springframework.http.HttpStatus;
@@ -14,7 +14,7 @@ import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExcep
 public class CustomResponseEntityExceptionHandler extends ResponseEntityExceptionHandler {
 
     @ExceptionHandler
-    public final ResponseEntity<Object> handleUserException(CustomException ex, WebRequest request) {
+    public final ResponseEntity<Object> handleException(CustomException ex, WebRequest request) {
         return new ResponseEntity(ex.getMessage(), HttpStatus.BAD_REQUEST);
     }
 }

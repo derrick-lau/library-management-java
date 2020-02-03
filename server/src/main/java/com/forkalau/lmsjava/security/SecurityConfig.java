@@ -25,19 +25,19 @@ import static com.forkalau.lmsjava.security.SecurityConstants.*;
         jsr250Enabled = true,
         prePostEnabled = true
 )
+
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Autowired
     private JwtAuthenticationEntryPoint unauthorizedHandler;
     @Autowired
-    private UserDetailsService adminService;
-
+    private AdminService adminService;
     @Autowired
     private BCryptPasswordEncoder bCryptPasswordEncoder;
 
     @Override
-    protected void configure(AuthenticationManagerBuilder authenticationManagerBuilder) throws Exception {
-        authenticationManagerBuilder.userDetailsService(adminService).passwordEncoder(bCryptPasswordEncoder);
+    protected void configure(AuthenticationManagerBuilder amb) throws Exception {
+        amb.userDetailsService(adminService).passwordEncoder(bCryptPasswordEncoder);
     }
 
     @Override
@@ -51,7 +51,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         http.cors()
                 .and().csrf().disable().exceptionHandling().authenticationEntryPoint(unauthorizedHandler)
                 .and().sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
-                .and().headers().frameOptions().sameOrigin() //To enable H2 Database
+//                .and().headers().frameOptions().sameOrigin() //To enable H2 Database
                 .and().authorizeRequests()
                 .antMatchers(
                         "/",
@@ -65,7 +65,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                         "/**/*.js"
                 ).permitAll()
                 .antMatchers(ADMIN_URLS).permitAll()
-                .antMatchers(H2_URL).permitAll()
+//                .antMatchers(H2_URL).permitAll()
                 .anyRequest()
                 .authenticated();
     }

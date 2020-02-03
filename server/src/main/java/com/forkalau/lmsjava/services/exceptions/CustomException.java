@@ -1,4 +1,4 @@
-package com.forkalau.lmsjava.services.middlewares.exceptions;
+package com.forkalau.lmsjava.services.exceptions;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ResponseStatus;

@@ -6,7 +6,7 @@ import com.forkalau.lmsjava.repositories.IAuthorRepository;
 import com.forkalau.lmsjava.repositories.IBookRepository;
 import com.forkalau.lmsjava.services.iservices.IBookService;
 import com.forkalau.lmsjava.services.iservices.IFactory;
-import com.forkalau.lmsjava.services.middlewares.logs.IWriteLog;
+import com.forkalau.lmsjava.services.iservices.IWriteLog;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

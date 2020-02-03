@@ -1,4 +1,4 @@
-package com.forkalau.lmsjava.services.middlewares.validationErrors;
+package com.forkalau.lmsjava.services.validation;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;

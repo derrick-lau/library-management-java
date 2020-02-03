@@ -27,26 +27,26 @@ const LoanPage: React.FC = () => {
 
   //Api Requests
   const SearchUser = () => {
-    SearchRequest('http://127.0.0.1:5000/loans/search', dataToServer, setFetchedData)
+    SearchRequest('http://127.0.0.1:8080/loans/search', dataToServer, setFetchedData)
   }
 
   const GetUserBorrowingAbook = () => {
-    SearchRequest('http://127.0.0.1:5000/loans/user', dataToServer, setUserBorrowing)
+    SearchRequest('http://127.0.0.1:8080/loans/user', dataToServer, setUserBorrowing)
   }
 
   const addLoan = (event:React.ChangeEvent<HTMLFormElement>) => {
     event.preventDefault();
-    AddOrDeleteOrUpdateRequest(`http://127.0.0.1:5000/loans/book/${dataToServer.BookId}/user/${dataToServer.UserId}`, dataToServer, 'post', 'Successfully Added')
+    AddOrDeleteOrUpdateRequest(`http://127.0.0.1:8080/loans/book/${dataToServer.BookId}/user/${dataToServer.UserId}`, dataToServer, 'post', 'Successfully Added')
   }
 
   const UpdateLoan = (event:React.ChangeEvent<HTMLFormElement>) => {
     event.preventDefault();
-    AddOrDeleteOrUpdateRequest(`http://127.0.0.1:5000/loans/${dataToServer.id}`, dataToServer, 'put', 'Successfully updated')
+    AddOrDeleteOrUpdateRequest(`http://127.0.0.1:8080/loans/${dataToServer.id}`, dataToServer, 'put', 'Successfully updated')
   }
 
   const DeleteLoan = (event:React.ChangeEvent<HTMLFormElement>) => {
     event.preventDefault();
-    AddOrDeleteOrUpdateRequest('http://127.0.0.1:5000/loans/delete', dataToServer, 'delete', 'Successfully Deleted')
+    AddOrDeleteOrUpdateRequest('http://127.0.0.1:8080/loans/delete', dataToServer, 'delete', "Successfully Deleted")
   }
 
   // A user's loans to table

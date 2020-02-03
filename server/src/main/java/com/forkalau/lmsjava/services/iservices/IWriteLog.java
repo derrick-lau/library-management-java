@@ -1,4 +1,4 @@
-package com.forkalau.lmsjava.services.middlewares.logs;
+package com.forkalau.lmsjava.services.iservices;
 
 public interface IWriteLog {
     void saveLog (String message);

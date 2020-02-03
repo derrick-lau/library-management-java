@@ -3,7 +3,7 @@ package com.forkalau.lmsjava.api.controllers;
 import com.forkalau.lmsjava.domain.User;
 import com.forkalau.lmsjava.services.iservices.IFactory;
 import com.forkalau.lmsjava.services.iservices.IUserService;
-import com.forkalau.lmsjava.services.middlewares.validationErrors.IMapValidationError;
+import com.forkalau.lmsjava.services.validation.IMapValidationError;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

@@ -14,7 +14,7 @@ const LogsPage: React.FC = () => {
       };
 
     const getLogs = () => {
-        SearchRequest('http://127.0.0.1:5000/logs/search', {createdAt: createdAt}, setLogs)
+        SearchRequest('http://127.0.0.1:8080/logs/search', {createdAt: createdAt}, setLogs)
     }
 
     const mappedLogs = logs.map(({id, createdAt, messages}) =>     

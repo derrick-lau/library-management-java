@@ -1,8 +1,7 @@
 package com.forkalau.lmsjava.security;
 
+import com.forkalau.lmsjava.security.payload.LoginInvalidResponse;
 import com.forkalau.lmsjava.services.iservices.IFactory;
-import com.forkalau.lmsjava.services.middlewares.exceptions.InvalidLoginResponse;
-import com.google.gson.Gson;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.web.AuthenticationEntryPoint;
@@ -19,11 +18,12 @@ public class JwtAuthenticationEntryPoint implements AuthenticationEntryPoint {
     @Autowired
     IFactory factory;
 
+    //customise the exception throwed
     @Override
     public void commence(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse,
                          AuthenticationException e) throws IOException, ServletException {
 
-        InvalidLoginResponse loginResponse = factory.invalidLoginResponse();
+        LoginInvalidResponse loginResponse = factory.invalidLoginResponse();
         String jsonLoginResponse = factory.gson().toJson(loginResponse);
 
         httpServletResponse.setContentType("application/json");

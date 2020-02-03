@@ -39,13 +39,13 @@ const UserPage: React.FC = () => {
 
   const UpdateUser = (event:React.ChangeEvent<HTMLFormElement>) => {
     event.preventDefault();
-    AddOrDeleteOrUpdateRequest(`http://127.0.0.1:5000/users/${userToServer.id}`, userToServer, 'put', 'Successfully updated')
+    AddOrDeleteOrUpdateRequest(`http://127.0.0.1:8080/users/${userToServer.id}`, userToServer, 'put', 'Successfully updated')
 
   }
 
   const DeleteUser = (event:React.ChangeEvent<HTMLFormElement>) => {
     event.preventDefault();
-    AddOrDeleteOrUpdateRequest('http://127.0.0.1:5000/users/delete', userToServer, 'delete', 'Successfully Deleted')
+    AddOrDeleteOrUpdateRequest('http://127.0.0.1:8080/users/delete', userToServer, 'delete', 'Successfully Deleted')
 
   }
 

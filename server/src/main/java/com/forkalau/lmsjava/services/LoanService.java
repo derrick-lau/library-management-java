@@ -9,7 +9,7 @@ import com.forkalau.lmsjava.repositories.ILoanRepository;
 import com.forkalau.lmsjava.repositories.IUserRepository;
 import com.forkalau.lmsjava.services.iservices.IFactory;
 import com.forkalau.lmsjava.services.iservices.ILoanService;
-import com.forkalau.lmsjava.services.middlewares.logs.IWriteLog;
+import com.forkalau.lmsjava.services.iservices.IWriteLog;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

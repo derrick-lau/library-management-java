@@ -1,6 +1,7 @@
-package com.forkalau.lmsjava.services.middlewares.logs;
+package com.forkalau.lmsjava.services;
 
 import com.forkalau.lmsjava.domain.Log;
+import com.forkalau.lmsjava.services.iservices.IWriteLog;
 import com.forkalau.lmsjava.repositories.ILogRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
