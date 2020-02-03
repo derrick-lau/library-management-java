@@ -1,10 +1,10 @@
-import { SetSignedInActionTypes } from './../../store/types';
+import { SetSignedInActionTypes } from '../../store/actionTypes';
 import { Iadmin } from './../../model/model';
 import axios from "axios";
 
 const SaveTokenToSession = (token:string) => window.sessionStorage.setItem('token', token)
 
-const SignInRequest = async (url:string, user:Iadmin, Setfn:SetSignedInActionTypes) => {
+const SignInRequest = async (url:string, user:Iadmin, Setfn:()=>SetSignedInActionTypes) => {
     try {  
         const res = await axios({
           url: url,

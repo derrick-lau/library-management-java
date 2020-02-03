@@ -12,11 +12,12 @@ import UserPage from './pages/UserPage';
 import LoanPage from './pages/LoanPage';
 import { useSelector, useDispatch} from 'react-redux';
 import { RootState } from './store/reducers';
+import { setIsSignedInTrue } from './store/actions';
 
 const App: React.FC = () => {
   const isSignedIn = useSelector((state: RootState)=>state.isSignedIn);
   const dispatch = useDispatch();
-  useEffect( () => LoadToken(dispatch({type:"SET_TRUE"})),[]);
+  useEffect( () => LoadToken(dispatch(setIsSignedInTrue)),[]);
   return (
     <>
       <Switch>

@@ -1,4 +1,4 @@
-import { SET_TRUE, SetSignedInActionTypes, SET_FALSE } from './TYPES';
+import { SET_TRUE, SetSignedInActionTypes, SET_FALSE } from './actionTypes';
 
 const initialState = {
     isSignedIn:false

@@ -1,4 +1,4 @@
-import { SetSignedInActionTypes, SET_TRUE, SET_FALSE } from './TYPES';
+import { SetSignedInActionTypes, SET_TRUE, SET_FALSE } from './actionTypes';
 
 export const setIsSignedInTrue = () : SetSignedInActionTypes => ({
     type: SET_TRUE

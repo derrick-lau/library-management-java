@@ -1,9 +1,8 @@
 import axios from "axios";
-import { Dispatch } from "redux";
-import { SetSignedInActionTypes } from "../../store/TYPES";
+import { SetSignedInActionTypes } from "../../store/actionTypes";
 
 //when componentDidMount LoadToken and stay signed in
-const LoadToken = (setIsSignedInTrue:SetSignedInActionTypes) => {
+const LoadToken = (setIsSignedInTrue: () => SetSignedInActionTypes) => {
     try{
         const token = window.sessionStorage.getItem('token');
         if(token ) {

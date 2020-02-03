@@ -3,6 +3,7 @@ import SignInForm from '../../components/SignInForm';
 import SignInRequest from '../../api/SignInRequest';
 import {ISetSignedInProp, Iadmin} from '../../model/model'
 import { useDispatch } from 'react-redux';
+import { setIsSignedInTrue } from '../../store/actions';
 
 const SignIn : React.FC= () => {
   const dispatch = useDispatch();
@@ -15,7 +16,7 @@ const SignIn : React.FC= () => {
 
   const SignIn = (event:React.ChangeEvent<HTMLFormElement>) => {
     event.preventDefault();
-    SignInRequest('http://127.0.0.1:8080/signin', admin, dispatch({type:"SET_TRUE"}))
+    SignInRequest('http://127.0.0.1:8080/signin', admin, dispatch(setIsSignedInTrue))
   }
 
   return (

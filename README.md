@@ -9,6 +9,8 @@ A Libray management System based on Node.js version (https://github.com/Derrick-
 
 - Redux for state management
 
+- Typescript
+
 - Using JPA-Hibernate to scaffold a database
 
 - Spring Security & JWT Authentication
@@ -19,7 +21,6 @@ A Libray management System based on Node.js version (https://github.com/Derrick-
 3. Run npm start client-app project
 
 # Roadmap
-- Typescript
 
 - Microservices, Docker, Redis
  

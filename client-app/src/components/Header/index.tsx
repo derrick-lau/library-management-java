@@ -4,6 +4,7 @@ import { ReactComponent as Logo } from '../../assets/logo.svg';
 import './index.scss';
 import { Button } from 'react-bootstrap';
 import { useSelector, useDispatch} from 'react-redux';
+import { setIsSignedInFalse } from '../../store/actions';
 const Header:React.FC = () => {
     const dispatch = useDispatch();
     return (
@@ -15,7 +16,7 @@ const Header:React.FC = () => {
                     Home
                 </Button>
             </Link>
-            <Link className='route' to='/' onClick = { ()=>{dispatch({type:"SET_FALSE"}); window.sessionStorage.clear();} }>
+            <Link className='route' to='/' onClick = { ()=>{dispatch(setIsSignedInFalse); window.sessionStorage.clear();} }>
                 <Button variant="light">
                     Sign out
                 </Button>
