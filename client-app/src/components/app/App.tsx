@@ -2,17 +2,17 @@ import React, { useState, useEffect} from 'react';
 import { BrowserRouter as Switch, Route} from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.scss';
-import Header from './components/Header';
-import Homepage from './pages/Homepage';
-import SignIn from './pages/SignInPage';
-import Bookspage from './pages/Bookspage';
-import LogsPage from './pages/LogsPage';
-import LoadToken from './api/LoadToken';
-import UserPage from './pages/UserPage'; 
-import LoanPage from './pages/LoanPage';
+import Header from '../Header';
+import Homepage from '../../pages/Homepage';
+import SignIn from '../../pages/SignInPage';
+import Bookspage from '../../pages/Bookspage';
+import LogsPage from '../../pages/LogsPage';
+import LoadToken from '../../api/LoadToken';
+import UserPage from '../../pages/UserPage'; 
+import LoanPage from '../../pages/LoanPage';
 import { useSelector, useDispatch} from 'react-redux';
-import { RootState } from './store/reducers';
-import { setIsSignedInTrue } from './store/actions';
+import { RootState } from '../../store/reducers';
+import { setIsSignedInTrue } from '../../store/actions';
 
 const App: React.FC = () => {
   const isSignedIn = useSelector((state: RootState)=>state.isSignedIn);
