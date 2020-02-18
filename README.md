@@ -9,11 +9,11 @@ A Libray management System based on Node.js version (https://github.com/Derrick-
 
 - Redux for state management
 
-- Typescript
+- Typescript for type safety
 
 - Using JPA-Hibernate to scaffold a database
 
-- Spring Security & JWT Authentication
+- Spring Security & JWT Authentication for application security
 
 # Setup & Installation
 1. Run Java spring boot server
@@ -22,7 +22,7 @@ A Libray management System based on Node.js version (https://github.com/Derrick-
 
 # Roadmap
 
-- Microservices, Docker, Redis
+- Microservices, Docker, Redis for segregation
  
 - CircleCI
 
